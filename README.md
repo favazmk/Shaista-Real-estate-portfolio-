@@ -1,11 +1,37 @@
-<div align="center">
+# Shaista Real Estate Portfolio
 
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+**Live Link**: [https://shaista-portfolio-gold.vercel.app](https://shaista-portfolio-gold.vercel.app)
 
-  <h1>Built with AI Studio</h2>
+## Screenshot
+<!-- Screenshot will be added here -->
 
-  <p>The fastest path from prompt to production with Gemini.</p>
+## Project Description
+A premium real estate portfolio for Shaista showcasing properties, developer partners, investment insights, and a seamless buying process. Designed to provide a high-end experience for prospective clients and investors.
 
-  <a href="https://aistudio.google.com/apps">Start building</a>
+## Tech Stack
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- GSAP / Framer Motion (Animations)
 
-</div>
+## Features
+- **Premium Property Showcase**: View featured properties with high-quality images and details.
+- **Investment Calculator**: Calculate potential returns on real estate investments.
+- **Golden Visa Information**: Comprehensive guides on securing a Golden Visa.
+- **Interactive Animations**: Smooth scroll and custom cursor for an elevated user experience.
+
+## Local Setup / Run Instructions
+
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+3. **Build for production:**
+   ```bash
+   npm run build
+   ```
