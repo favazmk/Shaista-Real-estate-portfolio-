@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { FAQS } from '../data/portfolioData';
-import { ChevronDown, Sparkles, Search, HelpCircle } from 'lucide-react';
+import { ChevronDown, Sparkles, HelpCircle } from 'lucide-react';
 import { staggerContainer, fadeUpBlur, staggerViewport } from '../utils/animations';
 
 export const FAQ: React.FC = () => {
   const [openId, setOpenId] = useState<string | null>(FAQS[0].id);
-  const [searchQuery, setSearchQuery] = useState('');
 
   const toggleAccordion = (id: string) => {
     setOpenId(openId === id ? null : id);
   };
 
-  const filteredFaqs = FAQS.filter(
-    (faq) =>
-      faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredFaqs = FAQS;
 
   return (
     <section className="py-28 bg-gradient-to-b from-[#0F0E0C] via-[#161410] to-[#0D0C0A] relative overflow-hidden border-t border-b border-white/10">
@@ -44,17 +39,6 @@ export const FAQ: React.FC = () => {
             Essential insights regarding high-net-worth real estate acquisition, discretion, and portfolio advisory.
           </p>
 
-          {/* Search Box */}
-          <div className="mt-8 max-w-md mx-auto relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
-            <input
-              type="text"
-              placeholder="Search questions (e.g., off-market, golden visa)..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-11 pr-4 py-3 rounded-full bg-primary border border-white/10 focus:border-gold text-xs text-text-white placeholder-text-muted focus:outline-none transition-colors"
-            />
-          </div>
         </motion.div>
 
         {/* Accordion List */}
