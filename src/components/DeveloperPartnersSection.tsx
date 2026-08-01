@@ -46,7 +46,7 @@ export const DeveloperPartnersSection: React.FC<DeveloperPartnersSectionProps> =
         </motion.div>
 
         {/* Developer Partners Grid */}
-        <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <motion.div variants={staggerContainer} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
           {DEVELOPER_PARTNERS.map((dev) => (
             <motion.div
               key={dev.id}
