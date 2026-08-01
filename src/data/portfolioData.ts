@@ -605,28 +605,6 @@ export const DEVELOPER_PARTNERS: DeveloperPartner[] = [
     featuredProjectsCount: 7,
     badge: "Prime Urban Destinations",
     image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: "stregis",
-    name: "ST. REGIS",
-    logoText: "ST. REGIS",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/St._Regis_Hotels_%26_Resorts_Logo.svg/320px-St._Regis_Hotels_%26_Resorts_Logo.svg.png",
-    category: "Branded Residences",
-    description: "Legendary luxury and bespoke services elevating the standard of branded residences in Dubai.",
-    featuredProjectsCount: 3,
-    badge: "Ultra-Luxury Living",
-    image: "https://images.unsplash.com/photo-1542314831-c6a4d142986d?q=80&w=800&auto=format&fit=crop"
-  },
-  {
-    id: "ritzcarlton",
-    name: "RITZ-CARLTON",
-    logoText: "RITZ-CARLTON",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/The_Ritz-Carlton_Hotel_Company_Logo.svg/320px-The_Ritz-Carlton_Hotel_Company_Logo.svg.png",
-    category: "Branded Residences",
-    description: "Iconic branded residences offering legendary service and unmatched luxury across prime Dubai locations.",
-    featuredProjectsCount: 2,
-    badge: "Legendary Service",
-    image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop"
   }
 ];
 
