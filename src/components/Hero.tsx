@@ -1,8 +1,8 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React, { useRef } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 import { CLIENT_PROFILE } from '../data/portfolioData';
-import { Sparkles, ArrowDownRight, MessageSquare, CheckCircle2, Award } from 'lucide-react';
 import { ParticleCanvas } from './ParticleCanvas';
+import DotField from './DotField';
 
 interface HeroProps {
   onBookClick: () => void;
@@ -10,194 +10,167 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onBookClick, onExploreClick }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  const mouseXSpring = useSpring(x, { stiffness: 300, damping: 30 });
+  const mouseYSpring = useSpring(y, { stiffness: 300, damping: 30 });
+
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["17.5deg", "-17.5deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-17.5deg", "17.5deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = mouseX / width - 0.5;
+    const yPct = mouseY / height - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
   return (
-    <section className="relative min-h-screen flex items-center pt-24 pb-16 overflow-hidden bg-[#0B0B0B] bg-architectural-lines">
-      {/* Editorial Dot Grid Overlay */}
-      <div className="absolute inset-0 bg-editorial-gold-grid opacity-30 pointer-events-none" />
-
-      {/* Interactive Particle & Lighting Canvas */}
-      <ParticleCanvas variant="dark" particleCount={50} />
-
-      {/* Radial Ambient Light Flares */}
-      <div className="absolute top-1/4 -right-40 w-96 h-96 bg-[#C8A96A]/10 rounded-full blur-[140px] pointer-events-none animate-gold-glow" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-white/5 rounded-full blur-[120px] pointer-events-none" />
-
-      {/* Vertical Editorial Text Tag */}
-      <div className="absolute left-6 top-1/2 -translate-y-1/2 text-[9px] uppercase tracking-[0.6em] text-[#C8A96A]/50 hidden xl:block vertical-text rotate-180 pointer-events-none font-mono z-20">
-        Gro Vision Real Estate LLC • Sheikh Zayed Rd, Dubai
+    <section id="top" className="relative box-border bg-[#F4F1EA] overflow-hidden">
+      {/* Background Repeating Gradient */}
+      <div 
+        className="absolute inset-0 pointer-events-none" 
+        style={{ backgroundImage: 'repeating-linear-gradient(90deg,transparent,transparent 120px,rgba(147,115,50,.055) 120px,rgba(147,115,50,.055) 121px)' }} 
+      />
+      
+      {/* Interactive Particle Canvas */}
+      <ParticleCanvas variant="light" particleCount={40} />
+      
+      {/* React Bits DotField */}
+      <div className="absolute inset-0 pointer-events-none opacity-100">
+        <DotField
+          dotRadius={2.5}
+          dotSpacing={21}
+          cursorRadius={550}
+          cursorForce={0.15}
+          bulgeStrength={58}
+          gradientFrom="#efea73"
+          gradientTo="#e3eb71"
+          glowColor="rgba(255, 255, 255, 0.5)"
+        />
       </div>
+      
+      {/* Hero Frames */}
+      <div className="absolute inset-[26px] border border-[#937332]/30 pointer-events-none hidden md:block" />
+      <div className="absolute inset-[34px] border border-[#937332]/13 pointer-events-none hidden md:block" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full z-10 relative">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center min-h-[calc(100vh-140px)]">
+      <div className="relative box-border max-w-[1440px] mx-auto px-[clamp(24px,4.9vw,70px)] pt-[120px] pb-[70px] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_clamp(240px,31vw,460px)] gap-[clamp(32px,5vw,80px)] items-center">
+        
+        {/* Left Content */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="flex flex-col z-10"
+        >
+          <div className="flex items-center gap-[14px] mb-[28px]">
+            <span className="block w-2 h-2 bg-[#937332] rotate-45 flex-none" />
+            <span className="font-mono text-[9.5px] uppercase tracking-[0.34em] text-[#937332]">
+              RERA Certified · Sheikh Zayed Rd, Dubai
+            </span>
+          </div>
           
-          {/* Left Text & Editorial Content */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            {/* Eyebrow badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#C8A96A]/30 glass-panel-gold text-[#C8A96A] text-xs uppercase tracking-[0.2em] font-mono mb-6 w-fit"
+          <h1 className="font-serif-luxury font-normal text-[clamp(38px,5.2vw,74px)] leading-[1.1] tracking-[-0.01em] m-0 text-[#16150F] text-balance">
+            Helping global investors<br />
+            <span className="italic text-[#937332]">build wealth in the UAE</span>
+          </h1>
+          
+          <p className="font-sans text-[15.5px] font-light leading-[1.85] text-[#55524D] max-w-[450px] mt-[32px] text-balance">
+            <span className="text-[#16150F] font-medium">{CLIENT_PROFILE.name}</span> — {CLIENT_PROFILE.credential}. Advisory on off-plan acquisition, Golden Visa residency and high-yield Dubai assets for overseas and NRI investors.
+          </p>
+          
+          <div className="flex flex-wrap items-center gap-x-[30px] gap-y-[24px] mt-[38px]">
+            <a 
+              href={CLIENT_PROFILE.whatsappUrl} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="px-[34px] py-[18px] bg-[#16150F] text-[#F4F1EA] no-underline text-[10.5px] uppercase tracking-[0.24em] transition-colors hover:bg-[#937332]"
             >
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{CLIENT_PROFILE.title}</span>
-            </motion.div>
-
-            {/* Massive Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.2 }}
-              className="font-serif-luxury text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-normal leading-[1.05] tracking-tight mb-6"
+              Free consultation
+            </a>
+            <button 
+              onClick={onBookClick}
+              className="text-[10.5px] uppercase tracking-[0.24em] text-[#937332] no-underline border-b border-[#937332]/40 pb-[5px] transition-colors hover:border-[#937332]"
             >
-              Helping Global Investors <br />
-              <span className="italic font-light gold-text-gradient">Build Wealth in UAE</span>
-            </motion.h1>
-
-            {/* Subheadline & Bio */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.3 }}
-              className="text-[#9C9C9C] text-base sm:text-lg max-w-2xl font-light leading-relaxed mb-8"
-            >
-              <strong className="text-[#F7F5F2] font-medium">{CLIENT_PROFILE.name}</strong> — {CLIENT_PROFILE.credential}. Specialized advisory for global overseas and NRI investors navigating off-plan, Golden Visa residency, and high-yield Dubai real estate assets.
-            </motion.p>
-
-            {/* CTAs */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.4 }}
-              className="flex flex-wrap items-center gap-4 mb-12"
-            >
-              <a
-                href={CLIENT_PROFILE.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor="WhatsApp"
-                className="px-8 py-4 rounded-full text-xs font-button uppercase tracking-widest font-bold text-[#0B0B0B] bg-gradient-to-r from-[#C8A96A] via-[#E5C378] to-[#C8A96A] hover:shadow-[0_0_35px_rgba(200,169,106,0.5)] transition-all duration-300 transform hover:-translate-y-1 flex items-center gap-3 group"
-              >
-                <MessageSquare className="w-4 h-4" />
-                <span>Free Consultation (WhatsApp)</span>
-                <ArrowDownRight className="w-4 h-4 transform group-hover:rotate-45 transition-transform duration-300 ml-1" />
-              </a>
-
-              <button
-                onClick={onBookClick}
-                data-cursor="Schedule"
-                className="px-8 py-4 rounded-full text-xs font-button uppercase tracking-widest font-semibold text-[#F7F5F2] border border-white/15 hover:border-[#C8A96A] hover:bg-white/5 transition-all duration-300 flex items-center gap-2"
-              >
-                <span>Schedule a Visit</span>
-              </button>
-            </motion.div>
-
-            {/* Quick Metrics & Verified Badges */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.5 }}
-              className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-white/10"
-            >
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 text-[#C8A96A] text-sm font-semibold mb-1">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>RERA Certified</span>
-                </div>
-                <span className="text-[10px] uppercase tracking-widest text-[#9C9C9C] font-mono">
-                  Licensed Advisor
-                </span>
-              </div>
-
-              <div className="flex flex-col">
-                <div className="flex items-center gap-2 text-[#F7F5F2] font-serif-luxury text-xl font-semibold mb-1">
-                  <span>10.1k Verified</span>
-                </div>
-                <span className="text-[10px] uppercase tracking-widest text-[#9C9C9C] font-mono">
-                  Investor Community
-                </span>
-              </div>
-
-              <div className="flex flex-col col-span-2 sm:col-span-1">
-                <div className="flex items-center gap-2 text-[#F7F5F2] font-serif-luxury text-xl font-semibold mb-1">
-                  <span>Gro Vision</span>
-                </div>
-                <span className="text-[10px] uppercase tracking-widest text-[#9C9C9C] font-mono">
-                  Real Estate LLC Co-Founder
-                </span>
-              </div>
-            </motion.div>
+              Schedule a visit ↗
+            </button>
           </div>
+          
+          <div className="mt-[52px] border-t border-[#937332]/25 max-w-[520px]">
+            <div className="flex items-baseline justify-between gap-[24px] py-[14px] border-b border-[#937332]/13">
+              <span className="font-mono text-[8.5px] uppercase tracking-[0.26em] text-[#8A857D]">Investor community</span>
+              <span className="font-serif-luxury text-[23px] text-[#16150F]">10.1k verified</span>
+            </div>
+            <div className="flex items-baseline justify-between gap-[24px] py-[14px] border-b border-[#937332]/13">
+              <span className="font-mono text-[8.5px] uppercase tracking-[0.26em] text-[#8A857D]">Advisory focus</span>
+              <span className="font-serif-luxury text-[23px] text-[#16150F]">Off-plan & Golden Visa</span>
+            </div>
+            <div className="flex items-baseline justify-between gap-[24px] py-[14px]">
+              <span className="font-mono text-[8.5px] uppercase tracking-[0.26em] text-[#8A857D]">Role</span>
+              <span className="font-serif-luxury text-[23px] text-[#16150F]">Co-Founder, Gro Vision</span>
+            </div>
+          </div>
+        </motion.div>
 
-          {/* Right Luxury Hero Portrait Composition */}
-          <div className="lg:col-span-5 relative flex justify-center items-center">
-            {/* Gold Corner Accent Frame */}
-            <div className="absolute -bottom-5 -right-5 w-28 h-28 border-b border-r border-[#C8A96A] opacity-40 pointer-events-none hidden sm:block z-0" />
-            <div className="absolute -top-5 -left-5 w-28 h-28 border-t border-l border-[#C8A96A] opacity-40 pointer-events-none hidden sm:block z-0" />
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 40 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-              className="relative w-full max-w-md lg:max-w-none aspect-[3/4] rounded-2xl overflow-hidden border border-[#C8A96A]/30 shadow-2xl shadow-black group"
-            >
-              <img
-                src="/images/DSC02613.webp"
-                alt="Shaista Fathima Ahmed Kabeer - Real Estate Advisor"
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-top filter brightness-95 contrast-105 group-hover:scale-105 transition-transform duration-1000 ease-out"
+        {/* Right Portrait */}
+        <div className="relative w-full max-w-[460px] h-[clamp(380px,43vw,620px)] justify-self-center lg:justify-self-end z-10" style={{ perspective: 1200 }}>
+          <motion.div 
+            ref={ref}
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+            style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            className="w-full h-full relative"
+          >
+            <div className="absolute left-[24px] top-[24px] w-full h-full border border-[#937332]/35 rounded-t-[210px] rounded-b-[2px] pointer-events-none" style={{ transform: "translateZ(-30px)" }} />
+            <div className="relative w-full h-full rounded-t-[210px] rounded-b-[2px] overflow-hidden bg-[#E7E1D5]" style={{ transform: "translateZ(0px)" }}>
+              <img 
+                src="/images/DSC02780.webp" 
+                alt="Shaista Fathima Ahmed Kabeer" 
+                decoding="async" 
+                className="w-full h-full object-cover object-[50%_12%] sepia-[0.12] saturate-[0.72] contrast-[1.03]"
               />
-
-              {/* Gradient Vignette Overlays */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0B] via-transparent to-transparent opacity-80" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0B]/40 via-transparent to-[#0B0B0B]/40" />
-
-              {/* Subtle Gold Frame Lines */}
-              <div className="absolute inset-4 border border-[#C8A96A]/20 rounded-xl pointer-events-none group-hover:border-[#C8A96A]/50 transition-colors duration-500" />
-
-              {/* Floating Glass Badge */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute top-6 right-6 glass-panel-gold p-4 rounded-xl flex items-center gap-3 border border-[#C8A96A]/40 shadow-xl"
-              >
-                <div className="w-10 h-10 rounded-full bg-[#C8A96A]/20 flex items-center justify-center text-[#C8A96A]">
-                  <Award className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-[#F7F5F2]">RERA Certified</div>
-                  <div className="text-[10px] uppercase text-[#C8A96A] tracking-wider font-mono">Dubai Property Advisor</div>
-                </div>
-              </motion.div>
-
-              {/* Floating Bottom Card */}
-              <div className="absolute bottom-6 inset-x-6 glass-panel p-5 rounded-xl border border-white/10 flex items-center justify-between">
-                <div>
-                  <div className="text-sm font-semibold text-[#F7F5F2]">Shaista Fathima</div>
-                  <div className="text-xs text-[#9C9C9C]">Co-Founder, Operations & Client Success</div>
-                </div>
-                <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#C8A96A]/10 border border-[#C8A96A]/30 text-[#C8A96A] text-[10px] font-mono">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#C8A96A] animate-ping" />
-                  <span>Verified Advisor</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
+            </div>
+            <div className="absolute -left-[1px] -bottom-[1px] bg-[#F4F1EA] border border-[#937332]/30 px-[19px] py-[13px] flex flex-col gap-[4px] shadow-xl" style={{ transform: "translateZ(40px)" }}>
+              <span className="font-serif-luxury text-[12px] tracking-[0.18em] text-[#16150F]">SHAISTA FATHIMA</span>
+              <span className="font-mono text-[8.5px] uppercase tracking-[0.24em] text-[#937332]">Verified · RERA Advisor</span>
+            </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* Animated Scroll Indicator */}
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-[#9C9C9C] text-[10px] uppercase tracking-[0.3em]"
+      <div className="relative box-border max-w-[1440px] mx-auto px-[clamp(24px,4.9vw,70px)] pb-[56px] grid grid-cols-2 md:grid-cols-4 gap-y-[18px] gap-x-[clamp(20px,3vw,44px)] font-mono text-[8.5px] uppercase tracking-[0.28em] text-[#8A857D] z-10">
+        <span className="pt-[12px] border-t border-[#937332]/30 leading-[1.7]">Zero income, capital gains & property tax</span>
+        <span className="pt-[12px] border-t border-[#937332]/30 leading-[1.7]">USD-pegged asset class</span>
+        <span className="pt-[12px] border-t border-[#937332]/30 leading-[1.7]">7.5–9% gross rental yields</span>
+        <span className="pt-[12px] border-t border-[#937332]/30 leading-[1.7]">DLD-supervised bank escrow</span>
+      </div>
+
+      <motion.div 
+        animate={{ y: [0, 7, 0] }}
+        transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
+        className="relative flex flex-col items-center gap-[9px] pb-[34px] font-mono text-[8px] uppercase tracking-[0.3em] text-[#8A857D] cursor-pointer z-10"
+        onClick={onExploreClick}
       >
-        <span>DISCOVER SERVICES & VISA TIERS</span>
-        <div className="w-4 h-7 rounded-full border border-white/20 flex items-start justify-center p-1">
-          <div className="w-1 h-1.5 rounded-full bg-[#C8A96A]" />
-        </div>
+        <span>Discover services & visa tiers</span>
+        <span className="block w-[1px] h-[26px] bg-gradient-to-b from-[#937332]/70 to-transparent" />
       </motion.div>
     </section>
   );
 };
+

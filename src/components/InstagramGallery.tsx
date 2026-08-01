@@ -40,7 +40,7 @@ export const InstagramGallery: React.FC = () => {
   ];
 
   return (
-    <section className="py-28 bg-[#FAF8F5] bg-architectural-lines-light text-[#1A1918] relative overflow-hidden border-t border-b border-[#C8A96A]/20">
+    <section className="py-28 bg-[#FAF8F5] bg-architectural-lines-light text-light-text relative overflow-hidden border-t border-b border-gold/20">
       {/* Background Decorative Gold Grid Glow */}
       <div className="absolute inset-0 bg-editorial-light-grid opacity-60 pointer-events-none" />
 
@@ -52,13 +52,13 @@ export const InstagramGallery: React.FC = () => {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#937332] font-mono mb-3">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-gold-alt font-mono mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>THE CURATED LIFESTYLE JOURNAL</span>
             </div>
-            <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-[#1A1918]">
+            <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-light-text">
               Behind the Scenes <br />
-              <span className="italic text-[#937332]">with Shaista Fathima</span>
+              <span className="italic text-gold-alt">with Shaista Fathima</span>
             </h2>
           </div>
 
@@ -66,9 +66,9 @@ export const InstagramGallery: React.FC = () => {
             href="https://www.instagram.com/desigirl.realtor"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-6 py-3 rounded-full text-xs font-button uppercase tracking-widest font-semibold text-[#1A1918] border border-[#937332]/40 hover:border-[#937332] bg-white shadow-sm hover:shadow-md flex items-center gap-2 w-fit transition-all"
+            className="px-6 py-3 rounded-full text-xs font-button uppercase tracking-widest font-semibold text-light-text border border-gold-alt/40 hover:border-gold-alt bg-white shadow-sm hover:shadow-md flex items-center gap-2 w-fit transition-all"
           >
-            <Instagram className="w-4 h-4 text-[#937332]" />
+            <Instagram className="w-4 h-4 text-gold-alt" />
             <span>Follow @desigirl.realtor</span>
           </a>
         </div>
@@ -81,7 +81,7 @@ export const InstagramGallery: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               onClick={() => setActiveImage(item.url)}
               data-cursor="Zoom"
-              className="break-inside-avoid cursor-pointer relative rounded-2xl overflow-hidden border border-[#C8A96A]/30 hover:border-[#937332] transition-all group shadow-md hover:shadow-xl"
+              className="break-inside-avoid cursor-pointer relative rounded-2xl overflow-hidden border border-gold/30 hover:border-gold-alt transition-all group shadow-md hover:shadow-xl"
             >
               <img
                 src={item.url}
@@ -91,7 +91,7 @@ export const InstagramGallery: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-6 flex flex-col justify-end">
                 <p className="text-xs text-white font-light">{item.caption}</p>
-                <div className="flex items-center gap-1 text-[10px] text-[#E5C378] font-mono mt-2">
+                <div className="flex items-center gap-1 text-[10px] text-gold-light font-mono mt-2">
                   <Maximize2 className="w-3 h-3" />
                   <span>Click to expand</span>
                 </div>
@@ -110,15 +110,15 @@ export const InstagramGallery: React.FC = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="relative max-w-4xl max-h-[85vh] rounded-2xl overflow-hidden border border-[#C8A96A]/50 shadow-2xl"
+              className="relative max-w-4xl max-h-[85vh] rounded-2xl overflow-hidden border border-gold/50 shadow-2xl"
             >
               <button
                 onClick={() => setActiveImage(null)}
-                className="absolute top-4 right-4 z-50 p-3 rounded-full bg-black/70 text-white hover:text-[#C8A96A]"
+                className="absolute top-4 right-4 z-50 p-3 rounded-full bg-black/70 text-white hover:text-gold"
               >
                 <X className="w-6 h-6" />
               </button>
-              <img src={activeImage} alt="Expanded View" referrerPolicy="no-referrer" className="w-full h-full object-contain" />
+              <img loading="lazy" src={activeImage} alt="Enlarged view of the selected luxury real estate property" referrerPolicy="no-referrer" className="w-full h-full object-contain" />
             </motion.div>
           </div>
         )}

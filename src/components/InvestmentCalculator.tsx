@@ -34,43 +34,43 @@ export const InvestmentCalculator: React.FC = () => {
     <section id="calculator" className="py-28 bg-gradient-to-b from-[#0F0E0C] via-[#161410] to-[#0D0C0A] relative overflow-hidden border-t border-b border-white/10">
       {/* Background Lighting & Luxury Gold Grid */}
       <div className="absolute inset-0 bg-luxury-gold-grid opacity-30 pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-[#C8A96A]/10 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-[#C8A96A]/08 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-gold/10 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-gold/08 rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#C8A96A] font-mono mb-3">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-gold font-mono mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>THE HNW WEALTH MODELING ENGINE</span>
             </div>
-            <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-[#F7F5F2]">
+            <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-text-white">
               Interactive Luxury <br />
               <span className="italic gold-text-gradient">ROI & Yield Calculator</span>
             </h2>
           </div>
-          <p className="text-[#9C9C9C] text-sm max-w-md font-light leading-relaxed">
+          <p className="text-text-muted text-sm max-w-md font-light leading-relaxed">
             Model capital appreciation, leverage scenarios, and net cash flows across multi-million dollar residential and commercial acquisitions.
           </p>
         </div>
 
         {/* Main Calculator Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 p-8 md:p-12 rounded-2xl glass-panel border border-[#C8A96A]/30">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 p-8 md:p-12 rounded-2xl glass-panel border border-gold/30">
           
           {/* Left Column: Sliders & Inputs */}
           <div className="lg:col-span-7 space-y-6">
-            <h3 className="font-serif-luxury text-2xl text-[#F7F5F2] flex items-center gap-2 mb-6">
-              <Calculator className="w-5 h-5 text-[#C8A96A]" />
+            <h3 className="font-serif-luxury text-2xl text-text-white flex items-center gap-2 mb-6">
+              <Calculator className="w-5 h-5 text-gold" />
               <span>Acquisition & Financing Parameters</span>
             </h3>
 
             {/* Property Price Slider */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs font-mono">
-                <span className="text-[#9C9C9C]">PROPERTY VALUE</span>
-                <span className="text-[#C8A96A] font-bold text-sm">
+                <span className="text-text-muted">PROPERTY VALUE</span>
+                <span className="text-gold font-bold text-sm">
                   ${propertyPrice.toLocaleString()}
                 </span>
               </div>
@@ -81,9 +81,9 @@ export const InvestmentCalculator: React.FC = () => {
                 step={500000}
                 value={propertyPrice}
                 onChange={(e) => setPropertyPrice(Number(e.target.value))}
-                className="w-full accent-[#C8A96A] h-1.5 bg-white/10 rounded-lg cursor-pointer"
+                className="w-full accent-gold h-1.5 bg-white/10 rounded-lg cursor-pointer"
               />
-              <div className="flex justify-between text-[10px] text-[#9C9C9C] font-mono">
+              <div className="flex justify-between text-[10px] text-text-muted font-mono">
                 <span>$2M</span>
                 <span>$40M</span>
                 <span>$80M</span>
@@ -93,8 +93,8 @@ export const InvestmentCalculator: React.FC = () => {
             {/* Down Payment Slider */}
             <div className="space-y-2">
               <div className="flex justify-between items-center text-xs font-mono">
-                <span className="text-[#9C9C9C]">DOWN PAYMENT ({downPaymentPercent}%)</span>
-                <span className="text-[#F7F5F2] font-semibold text-xs">
+                <span className="text-text-muted">DOWN PAYMENT ({downPaymentPercent}%)</span>
+                <span className="text-text-white font-semibold text-xs">
                   ${downPaymentAmount.toLocaleString()}
                 </span>
               </div>
@@ -105,16 +105,16 @@ export const InvestmentCalculator: React.FC = () => {
                 step={5}
                 value={downPaymentPercent}
                 onChange={(e) => setDownPaymentPercent(Number(e.target.value))}
-                className="w-full accent-[#C8A96A] h-1.5 bg-white/10 rounded-lg cursor-pointer"
+                className="w-full accent-gold h-1.5 bg-white/10 rounded-lg cursor-pointer"
               />
             </div>
 
             {/* Two Column Grid for Interest Rate & Loan Term */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
               <div className="space-y-2">
-                <div className="flex justify-between text-xs font-mono text-[#9C9C9C]">
+                <div className="flex justify-between text-xs font-mono text-text-muted">
                   <span>MORTGAGE INTEREST RATE</span>
-                  <span className="text-[#C8A96A]">{interestRate}%</span>
+                  <span className="text-gold">{interestRate}%</span>
                 </div>
                 <input
                   type="range"
@@ -123,14 +123,14 @@ export const InvestmentCalculator: React.FC = () => {
                   step={0.1}
                   value={interestRate}
                   onChange={(e) => setInterestRate(Number(e.target.value))}
-                  className="w-full accent-[#C8A96A] h-1.5 bg-white/10 rounded-lg cursor-pointer"
+                  className="w-full accent-gold h-1.5 bg-white/10 rounded-lg cursor-pointer"
                 />
               </div>
 
               <div className="space-y-2">
-                <div className="flex justify-between text-xs font-mono text-[#9C9C9C]">
+                <div className="flex justify-between text-xs font-mono text-text-muted">
                   <span>LOAN TENURE</span>
-                  <span className="text-[#C8A96A]">{loanTermYears} Years</span>
+                  <span className="text-gold">{loanTermYears} Years</span>
                 </div>
                 <input
                   type="range"
@@ -139,7 +139,7 @@ export const InvestmentCalculator: React.FC = () => {
                   step={5}
                   value={loanTermYears}
                   onChange={(e) => setLoanTermYears(Number(e.target.value))}
-                  className="w-full accent-[#C8A96A] h-1.5 bg-white/10 rounded-lg cursor-pointer"
+                  className="w-full accent-gold h-1.5 bg-white/10 rounded-lg cursor-pointer"
                 />
               </div>
             </div>
@@ -147,9 +147,9 @@ export const InvestmentCalculator: React.FC = () => {
             {/* Yield & Appreciation Rate */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
               <div className="space-y-2">
-                <div className="flex justify-between text-xs font-mono text-[#9C9C9C]">
+                <div className="flex justify-between text-xs font-mono text-text-muted">
                   <span>GROSS ANNUAL RENTAL YIELD</span>
-                  <span className="text-[#C8A96A]">{expectedAnnualYield}%</span>
+                  <span className="text-gold">{expectedAnnualYield}%</span>
                 </div>
                 <input
                   type="range"
@@ -158,14 +158,14 @@ export const InvestmentCalculator: React.FC = () => {
                   step={0.1}
                   value={expectedAnnualYield}
                   onChange={(e) => setExpectedAnnualYield(Number(e.target.value))}
-                  className="w-full accent-[#C8A96A] h-1.5 bg-white/10 rounded-lg cursor-pointer"
+                  className="w-full accent-gold h-1.5 bg-white/10 rounded-lg cursor-pointer"
                 />
               </div>
 
               <div className="space-y-2">
-                <div className="flex justify-between text-xs font-mono text-[#9C9C9C]">
+                <div className="flex justify-between text-xs font-mono text-text-muted">
                   <span>ANNUAL CAPITAL GROWTH</span>
-                  <span className="text-[#C8A96A]">{annualCapitalGrowth}%</span>
+                  <span className="text-gold">{annualCapitalGrowth}%</span>
                 </div>
                 <input
                   type="range"
@@ -174,7 +174,7 @@ export const InvestmentCalculator: React.FC = () => {
                   step={0.5}
                   value={annualCapitalGrowth}
                   onChange={(e) => setAnnualCapitalGrowth(Number(e.target.value))}
-                  className="w-full accent-[#C8A96A] h-1.5 bg-white/10 rounded-lg cursor-pointer"
+                  className="w-full accent-gold h-1.5 bg-white/10 rounded-lg cursor-pointer"
                 />
               </div>
             </div>
@@ -182,20 +182,20 @@ export const InvestmentCalculator: React.FC = () => {
           </div>
 
           {/* Right Column: Financial Results Output Box */}
-          <div className="lg:col-span-5 glass-panel-gold p-8 rounded-xl border border-[#C8A96A]/40 flex flex-col justify-between space-y-6">
+          <div className="lg:col-span-5 glass-panel-gold p-8 rounded-xl border border-gold/40 flex flex-col justify-between space-y-6">
             <div>
-              <div className="flex items-center gap-2 text-xs font-mono uppercase text-[#C8A96A] tracking-widest mb-4">
+              <div className="flex items-center gap-2 text-xs font-mono uppercase text-gold tracking-widest mb-4">
                 <PieChart className="w-4 h-4" />
                 <span>5-YEAR FINANCIAL PROJECTION</span>
               </div>
 
               {/* Major Highlight: Projected 5 Yr Value */}
-              <div className="p-4 rounded-xl bg-[#0B0B0B]/80 border border-[#C8A96A]/30 mb-6">
-                <div className="text-[10px] uppercase font-mono text-[#9C9C9C]">Projected 5-Year Portfolio Value</div>
-                <div className="font-serif-luxury text-3xl sm:text-4xl font-bold text-[#F7F5F2] mt-1">
+              <div className="p-4 rounded-xl bg-primary/80 border border-gold/30 mb-6">
+                <div className="text-[10px] uppercase font-mono text-text-muted">Projected 5-Year Portfolio Value</div>
+                <div className="font-serif-luxury text-3xl sm:text-4xl font-bold text-text-white mt-1">
                   ${Math.round(projected5YrPropertyValue).toLocaleString()}
                 </div>
-                <div className="text-xs text-[#C8A96A] font-mono mt-1">
+                <div className="text-xs text-gold font-mono mt-1">
                   +${Math.round(projected5YrCapitalGain).toLocaleString()} Estimated Capital Growth
                 </div>
               </div>
@@ -203,17 +203,17 @@ export const InvestmentCalculator: React.FC = () => {
               {/* Breakdown List */}
               <div className="space-y-3 text-xs font-mono">
                 <div className="flex justify-between p-2.5 rounded-lg bg-black/40 border border-white/5">
-                  <span className="text-[#9C9C9C]">Est. Monthly Mortgage Payment:</span>
-                  <span className="text-[#F7F5F2] font-semibold">${Math.round(monthlyMortgage).toLocaleString()}/mo</span>
+                  <span className="text-text-muted">Est. Monthly Mortgage Payment:</span>
+                  <span className="text-text-white font-semibold">${Math.round(monthlyMortgage).toLocaleString()}/mo</span>
                 </div>
 
                 <div className="flex justify-between p-2.5 rounded-lg bg-black/40 border border-white/5">
-                  <span className="text-[#9C9C9C]">Est. Gross Monthly Rental Income:</span>
-                  <span className="text-[#F7F5F2] font-semibold">${Math.round(grossMonthlyRentalIncome).toLocaleString()}/mo</span>
+                  <span className="text-text-muted">Est. Gross Monthly Rental Income:</span>
+                  <span className="text-text-white font-semibold">${Math.round(grossMonthlyRentalIncome).toLocaleString()}/mo</span>
                 </div>
 
                 <div className="flex justify-between p-2.5 rounded-lg bg-black/40 border border-white/5">
-                  <span className="text-[#9C9C9C]">Estimated Net Monthly Cash Flow:</span>
+                  <span className="text-text-muted">Estimated Net Monthly Cash Flow:</span>
                   <span className={`font-semibold ${netMonthlyCashFlow >= 0 ? 'text-emerald-400' : 'text-amber-400'}`}>
                     {netMonthlyCashFlow >= 0 ? '+' : ''}${Math.round(netMonthlyCashFlow).toLocaleString()}/mo
                   </span>
@@ -222,14 +222,14 @@ export const InvestmentCalculator: React.FC = () => {
             </div>
 
             <div className="pt-4 border-t border-white/10">
-              <div className="flex items-center gap-2 text-[10px] text-[#9C9C9C] font-mono mb-4">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#C8A96A]" />
+              <div className="flex items-center gap-2 text-[10px] text-text-muted font-mono mb-4">
+                <ShieldCheck className="w-3.5 h-3.5 text-gold" />
                 <span>Projections for illustrative purpose. Consult Gro Vision for tax structuring.</span>
               </div>
 
               <a
                 href="#contact"
-                className="w-full py-3.5 rounded-full text-xs font-button uppercase tracking-widest font-bold text-[#0B0B0B] bg-gradient-to-r from-[#C8A96A] to-[#E5C378] flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(200,169,106,0.4)] transition-all"
+                className="w-full py-3.5 rounded-full text-xs font-button uppercase tracking-widest font-bold text-primary bg-gradient-to-r from-gold to-gold-light flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(200,169,106,0.4)] transition-all"
               >
                 <span>Request Custom Investment Deck</span>
               </a>

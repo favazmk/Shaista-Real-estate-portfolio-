@@ -45,7 +45,7 @@ export const CustomCursor: React.FC = () => {
     <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden hidden md:block">
       {/* Outer Spring Ring */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full border border-[#C8A96A]/60 flex items-center justify-center mix-blend-difference pointer-events-none"
+        className="fixed top-0 left-0 rounded-full border border-gold/60 flex items-center justify-center mix-blend-difference pointer-events-none"
         animate={{
           x: mousePosition.x - (isHovered ? 28 : 16),
           y: mousePosition.y - (isHovered ? 28 : 16),
@@ -57,7 +57,7 @@ export const CustomCursor: React.FC = () => {
         transition={{ type: 'spring', damping: 28, stiffness: 350, mass: 0.2 }}
       >
         {cursorText && (
-          <span className="text-[10px] uppercase tracking-widest font-mono text-[#F7F5F2] font-semibold px-1 text-center leading-none">
+          <span className="text-[10px] uppercase tracking-widest font-mono text-text-white font-semibold px-1 text-center leading-none">
             {cursorText}
           </span>
         )}
@@ -65,7 +65,7 @@ export const CustomCursor: React.FC = () => {
 
       {/* Inner Precision Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-[#C8A96A] pointer-events-none"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full bg-gold pointer-events-none"
         animate={{
           x: mousePosition.x - 4,
           y: mousePosition.y - 4,

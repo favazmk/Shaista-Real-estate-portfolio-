@@ -79,16 +79,12 @@ export interface SocialReel {
   id: string;
   reelId: string;
   title: string;
-  caption: string;
   thumbnail: string;
+  video: string;
+  category: string;
   views: string;
-  likes: string;
-  comments: string;
-  videoUrl: string;
-  instagramUrl: string;
-  embedUrl: string;
-  audioTrack?: string;
-  postedDate?: string;
+  duration: string;
+  date: string;
 }
 
 export interface FAQItem {
@@ -111,6 +107,7 @@ export interface DeveloperPartner {
   id: string;
   name: string;
   logoText: string;
+  logoUrl?: string;
   category: string;
   description: string;
   featuredProjectsCount: number;
