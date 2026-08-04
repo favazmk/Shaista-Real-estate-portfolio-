@@ -3,6 +3,7 @@ import { Preloader } from './components/Preloader';
 import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { SequenceHero } from './components/SequenceHero';
 import { About } from './components/About';
 import { DeveloperPartnersSection } from './components/DeveloperPartnersSection';
 import { CommunityGuidesSection } from './components/CommunityGuidesSection';
@@ -18,6 +19,17 @@ import { FloatingBar } from './components/FloatingBar';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
+  const [isHeroActive, setIsHeroActive] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // SequenceHero is 500vh tall. We consider it active until we scroll past ~450vh
+      setIsHeroActive(window.scrollY < window.innerHeight * 4.5);
+    };
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // init
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const scrollToContact = () => {
     const el = document.getElementById('contact');
@@ -34,7 +46,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-primary text-text-white min-h-screen relative font-sans selection:bg-gold selection:text-primary overflow-x-hidden">
+    <div className="bg-primary text-text-white min-h-screen relative font-sans selection:bg-gold selection:text-primary">
       {/* Global Architectural Grid & Ambient Gold Spotlight Backdrops */}
       <div className="fixed inset-0 pointer-events-none z-0 bg-luxury-grid opacity-60" />
       <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gold/10 blur-[140px] pointer-events-none z-0" />
@@ -50,10 +62,11 @@ export default function App() {
       {!loading && (
         <>
           {/* Top Navbar */}
-          <Navbar onBookClick={scrollToContact} />
+          <Navbar onBookClick={scrollToContact} isHeroActive={isHeroActive} />
 
           {/* Main Sections */}
           <main>
+            <SequenceHero />
             <Hero onBookClick={scrollToContact} onExploreClick={scrollToExplore} />
             <About />
             <DeveloperPartnersSection onBookClick={scrollToContact} />

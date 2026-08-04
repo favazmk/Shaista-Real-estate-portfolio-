@@ -4,9 +4,10 @@ import { Menu, X, PhoneCall, Sparkles } from 'lucide-react';
 
 interface NavbarProps {
   onBookClick: () => void;
+  isHeroActive?: boolean;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onBookClick, isHeroActive = false }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -44,7 +45,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-full ${
-          scrolled
+          scrolled && !isHeroActive
             ? 'top-4 max-w-5xl rounded-full py-3 bg-white/70 backdrop-blur-xl border border-black/10 shadow-lg shadow-black/5 px-6'
             : 'top-0 max-w-7xl py-6 bg-transparent px-6 md:px-12'
         }`}
@@ -52,29 +53,29 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
         <div className="w-full mx-auto flex items-center justify-between">
           {/* Brand Monogram & Title */}
           <a href="#" className="flex items-center gap-3 group">
-            <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 border border-[#937332]/40 group-hover:border-[#937332] ${scrolled ? 'bg-white/50' : ''}`}>
-              <span className="font-cinzel text-sm font-bold text-[#937332]">SF</span>
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 border ${isHeroActive ? 'border-white/40 group-hover:border-white' : 'border-[#937332]/40 group-hover:border-[#937332]'} ${scrolled && !isHeroActive ? 'bg-white/50' : ''}`}>
+              <span className={`font-cinzel text-sm font-bold ${isHeroActive ? 'text-white' : 'text-[#937332]'}`}>SF</span>
             </div>
             <div className="flex flex-col">
-              <span className="font-serif-luxury text-lg tracking-wider font-semibold transition-colors duration-300 text-[#16150F] group-hover:text-[#937332]">
+              <span className={`font-serif-luxury text-lg tracking-wider font-semibold transition-colors duration-300 ${isHeroActive ? 'text-white group-hover:text-white/80' : 'text-[#16150F] group-hover:text-[#937332]'}`}>
                 SHAISTA FATHIMA
               </span>
-              <span className="text-[9px] uppercase tracking-[0.25em] text-[#55524D]">
+              <span className={`text-[9px] uppercase tracking-[0.25em] ${isHeroActive ? 'text-white/70' : 'text-[#55524D]'}`}>
                 The Gro Vision
               </span>
             </div>
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs uppercase tracking-[0.16em] font-medium text-[#55524D]">
+          <nav className={`hidden lg:flex items-center gap-6 xl:gap-8 text-xs uppercase tracking-[0.16em] font-medium ${isHeroActive ? 'text-white/80' : 'text-[#55524D]'}`}>
             {primaryNavLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="transition-colors duration-200 relative py-1 group whitespace-nowrap hover:text-[#937332]"
+                className={`transition-colors duration-200 relative py-1 group whitespace-nowrap ${isHeroActive ? 'hover:text-white' : 'hover:text-[#937332]'}`}
               >
                 {link.label}
-                <span className="absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full bg-[#937332]" />
+                <span className={`absolute bottom-0 left-0 w-0 h-[1px] transition-all duration-300 group-hover:w-full ${isHeroActive ? 'bg-white' : 'bg-[#937332]'}`} />
               </a>
             ))}
           </nav>
@@ -86,7 +87,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
               onClick={onBookClick}
               data-cursor="VIP Book"
               className={`hidden sm:flex items-center gap-2 px-4 md:px-5 py-2.5 rounded-full text-xs font-button uppercase tracking-widest font-semibold transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 shrink-0 ${
-                scrolled 
+                (scrolled && !isHeroActive) || isHeroActive
                   ? 'text-primary bg-gradient-to-r from-gold to-gold-light hover:shadow-[0_0_25px_rgba(200,169,106,0.4)]'
                   : 'text-[#F4F1EA] bg-[#16150F] hover:bg-[#937332] border border-[#16150F] hover:border-[#937332]'
               }`}
@@ -98,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick }) => {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 transition-colors shrink-0 text-[#16150F] hover:text-[#937332]"
+              className={`lg:hidden p-2 transition-colors shrink-0 ${isHeroActive ? 'text-white hover:text-white/80' : 'text-[#16150F] hover:text-[#937332]'}`}
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}

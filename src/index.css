@@ -39,6 +39,7 @@
     background-color: var(--color-bg-primary);
     color: var(--color-text-white);
     font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, .font-serif-luxury, .font-cinzel, .font-button {
