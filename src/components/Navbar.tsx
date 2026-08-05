@@ -46,8 +46,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onBookClick, isHeroActive = fals
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-full ${
           scrolled && !isHeroActive
-            ? 'top-4 max-w-5xl rounded-full py-3 bg-white/70 backdrop-blur-xl border border-black/10 shadow-lg shadow-black/5 px-6'
-            : 'top-0 max-w-7xl py-6 bg-transparent px-6 md:px-12'
+            ? 'top-4 max-w-5xl rounded-full py-3 bg-white/80 backdrop-blur-xl border border-black/10 shadow-lg shadow-black/5 px-6'
+            : scrolled && isHeroActive
+              ? 'top-4 max-w-5xl rounded-full py-3 bg-black/65 backdrop-blur-xl border border-white/15 shadow-2xl shadow-black/50 px-6'
+              : 'top-0 max-w-7xl py-6 bg-transparent px-6 md:px-12'
         }`}
       >
         <div className="w-full mx-auto flex items-center justify-between">

@@ -35,7 +35,7 @@ export const InvestmentInsightsSection: React.FC<InvestmentInsightsSectionProps>
   };
 
   return (
-    <section id="investment-insights" className="py-28 bg-[#FAF8F5] bg-architectural-lines-light text-light-text relative overflow-hidden border-t border-b border-gold/20">
+    <section id="investment-insights" className="py-14 md:py-16 bg-[#FAF8F5] bg-architectural-lines-light text-light-text relative overflow-hidden border-t border-b border-gold/20">
       {/* Background Decorative Gold Grid Glow */}
       <div className="absolute inset-0 bg-editorial-light-grid opacity-60 pointer-events-none" />
 

@@ -13,7 +13,7 @@ export const Testimonials: React.FC = () => {
   };
   
   return (
-    <section id="testimonials" ref={containerRef} className="py-32 bg-primary text-text-white relative overflow-hidden border-t border-b border-white/5">
+    <section id="testimonials" ref={containerRef} className="py-14 md:py-16 bg-primary text-text-white relative overflow-hidden border-t border-b border-white/5">
       {/* Background Lighting & Grid */}
       <div className="absolute inset-0 bg-luxury-grid opacity-30 pointer-events-none" />
       <ParticleCanvas variant="dark" particleCount={30} />
@@ -22,17 +22,17 @@ export const Testimonials: React.FC = () => {
       <div className="absolute top-0 right-0 w-[800px] h-[800px] ambient-glow-gold rounded-full opacity-60 pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] ambient-glow-subtle rounded-full opacity-40 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
         
         {/* Left Column: Sticky Header */}
         <div className="lg:w-1/3">
           <div className="lg:sticky top-40 z-20">
-            <div className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gold font-mono mb-6">
+            <div className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-gold font-mono mb-4">
               <span className="w-8 h-[1px] bg-gold"></span>
               <span>The Inner Circle</span>
             </div>
             
-            <h2 className="font-serif-luxury text-5xl lg:text-6xl font-normal text-text-white leading-[1.1] mb-6">
+            <h2 className="font-serif-luxury text-3xl lg:text-4xl font-normal text-text-white leading-[1.1] mb-4">
               Words From <br />
               <span className="italic text-gold bg-clip-text text-transparent bg-gradient-to-r from-gold to-gold-light">
                 Visionary Clients

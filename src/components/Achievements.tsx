@@ -7,7 +7,7 @@ import DeveloperMarquee from './DeveloperMarquee';
 
 export const Achievements: React.FC = () => {
   return (
-    <section id="timeline" className="py-28 bg-gradient-to-b from-[#0F0E0C] via-[#161410] to-[#0D0C0A] bg-architectural-lines relative overflow-hidden border-t border-b border-white/10">
+    <section id="timeline" className="py-14 md:py-16 bg-gradient-to-b from-[#0F0E0C] via-[#161410] to-[#0D0C0A] bg-architectural-lines relative overflow-hidden border-t border-b border-white/10">
       {/* Background Lighting & Grid */}
       <div className="absolute inset-0 bg-editorial-gold-grid opacity-20 pointer-events-none" />
 

@@ -14,7 +14,7 @@ export const FAQ: React.FC = () => {
   const filteredFaqs = FAQS;
 
   return (
-    <section className="py-28 bg-gradient-to-b from-[#0F0E0C] via-[#161410] to-[#0D0C0A] relative overflow-hidden border-t border-b border-white/10">
+    <section className="py-14 md:py-16 bg-gradient-to-b from-[#0F0E0C] via-[#161410] to-[#0D0C0A] relative overflow-hidden border-t border-b border-white/10">
       {/* Background Lighting & Grid */}
       <div className="absolute inset-0 bg-editorial-gold-grid opacity-20 pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/08 rounded-full blur-[180px] pointer-events-none" />

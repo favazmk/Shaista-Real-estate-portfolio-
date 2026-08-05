@@ -134,7 +134,7 @@ export const PersonalBrand: React.FC = () => {
 
   return (
     <>
-      <section id="brand" className="py-32 bg-[#090909] relative overflow-hidden border-t border-b border-white/5">
+      <section id="brand" className="py-14 md:py-16 bg-[#090909] relative overflow-hidden border-t border-b border-white/5">
         
         {/* Moving Particles Canvas for background depth */}
         <ParticleCanvas variant="dark" particleCount={25} />
@@ -147,10 +147,10 @@ export const PersonalBrand: React.FC = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8"
+            className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6"
           >
             <div>
-              <h2 className="font-serif-luxury text-5xl md:text-6xl text-[#F4F1EA] mb-4">
+              <h2 className="font-serif-luxury text-3xl md:text-4xl text-[#F4F1EA] mb-3">
                 Real Estate Insights
               </h2>
               <h3 className="font-serif-luxury text-3xl md:text-4xl text-gold italic mb-6">

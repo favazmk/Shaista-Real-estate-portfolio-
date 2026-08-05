@@ -45,7 +45,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-28 bg-gradient-to-b from-primary via-[#14120D] to-[#0A0A09] bg-architectural-lines relative overflow-hidden border-t border-white/10">
+    <section id="contact" className="py-14 md:py-16 bg-gradient-to-b from-primary via-[#14120D] to-[#0A0A09] bg-architectural-lines relative overflow-hidden border-t border-white/10">
       {/* Background Architectural Grid & Glow */}
       <div className="absolute inset-0 bg-editorial-gold-grid opacity-20 pointer-events-none" />
 

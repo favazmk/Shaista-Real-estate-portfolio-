@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { COMMUNITY_GUIDES } from '../data/portfolioData';
 import { CommunityGuide } from '../types';
-import { MapPin, CheckCircle2, MessageSquare, Sparkles } from 'lucide-react';
+import { MapPin, CheckCircle2, MessageSquare, Sparkles, FileText } from 'lucide-react';
 import { ParticleCanvas } from './ParticleCanvas';
 import { staggerContainer, fadeUpBlur, staggerViewport } from '../utils/animations';
 
@@ -14,14 +14,11 @@ export const CommunityGuidesSection: React.FC<CommunityGuidesSectionProps> = ({ 
   const [activeGuide, setActiveGuide] = useState<CommunityGuide>(COMMUNITY_GUIDES[0]);
 
   return (
-    <section id="community-guides" className="py-28 bg-[#F5F2EC] bg-architectural-lines-light text-light-text relative overflow-hidden border-t border-b border-gold/20">
-      {/* Background Lighting & Dot Grid */}
+    <section id="community-guides" className="py-14 md:py-16 bg-[#F5F2EC] bg-architectural-lines-light text-light-text relative overflow-hidden border-t border-b border-gold/20">
       <div className="absolute inset-0 bg-editorial-light-grid opacity-60 pointer-events-none" />
-
-      {/* Moving Particles Canvas */}
       <ParticleCanvas variant="light" particleCount={40} />
-
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold/12 rounded-full blur-[200px] pointer-events-none" />
+
       <motion.div 
         variants={staggerContainer}
         initial="hidden"
@@ -37,16 +34,15 @@ export const CommunityGuidesSection: React.FC<CommunityGuidesSectionProps> = ({ 
             <span>PRIME DUBAI NEIGHBORHOOD INSIGHTS</span>
           </div>
           <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-light-text mb-4">
-            Master Community <br />
-            <span className="italic text-gold-alt">Yield & Area Guides</span>
+            Yield & Area Guides
           </h2>
           <p className="text-light-text-muted text-sm font-light leading-relaxed">
-            Data-backed insights into Dubai's most liquid real estate enclaves. Shaista Fathima analyzes rental yield potential, capital growth trajectory, and tenant demand across top communities.
+            Data-backed insights into Dubai's most liquid real estate enclaves. Rental yield potential, capital growth trajectory, and tenant demand across top communities.
           </p>
         </motion.div>
 
-        {/* Community Tabs */}
-        <motion.div variants={fadeUpBlur} className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        {/* Community Tabs with Subtitles & Prices */}
+        <motion.div variants={fadeUpBlur} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
           {COMMUNITY_GUIDES.map((guide) => {
             const isSelected = guide.id === activeGuide.id;
             return (
@@ -55,16 +51,24 @@ export const CommunityGuidesSection: React.FC<CommunityGuidesSectionProps> = ({ 
                 onClick={() => setActiveGuide(guide)}
                 className={`p-5 rounded-2xl text-left transition-all duration-300 relative overflow-hidden border ${
                   isSelected
-                    ? 'bg-white border-gold-alt shadow-[0_0_20px_rgba(200,169,106,0.3)]'
-                    : 'bg-white/60 border-gold/20 hover:border-gold-alt/50'
+                    ? 'bg-white border-gold-alt shadow-[0_0_20px_rgba(200,169,106,0.35)]'
+                    : 'bg-white/70 border-gold/20 hover:border-gold-alt/50 hover:bg-white'
                 }`}
               >
-                <div className="text-[10px] font-mono uppercase text-gold-alt tracking-wider mb-1 font-bold">
-                  {guide.avgYield}
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-[10px] font-mono uppercase text-gold-alt tracking-wider font-bold px-2 py-0.5 rounded bg-gold/10">
+                    Yield: {guide.avgYield}
+                  </span>
+                  <span className="text-[10px] font-mono text-light-text-muted">
+                    {guide.startingPrice}
+                  </span>
                 </div>
-                <h3 className="font-serif-luxury text-lg text-light-text font-semibold truncate">
+                <h3 className="font-serif-luxury text-lg text-light-text font-semibold mb-1">
                   {guide.name}
                 </h3>
+                <p className="text-xs text-light-text-muted font-light truncate">
+                  {guide.subtitle}
+                </p>
               </button>
             );
           })}
@@ -103,7 +107,7 @@ export const CommunityGuidesSection: React.FC<CommunityGuidesSectionProps> = ({ 
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>LOCATION HIGHLIGHT</span>
                 </div>
-                <h3 className="font-serif-luxury text-3xl sm:text-4xl text-light-text mb-2">
+                <h3 className="font-serif-luxury text-3xl sm:text-4xl text-light-text mb-1">
                   {activeGuide.name}
                 </h3>
                 <p className="text-xs font-mono uppercase text-gold-alt tracking-wider mb-4 font-semibold">
@@ -139,9 +143,10 @@ export const CommunityGuidesSection: React.FC<CommunityGuidesSectionProps> = ({ 
 
                 <button
                   onClick={onBookClick}
-                  className="py-3.5 px-6 rounded-full text-xs font-mono uppercase font-semibold text-light-text border border-gold-alt hover:bg-gold-alt/10 transition-all"
+                  className="py-3.5 px-6 rounded-full text-xs font-mono uppercase font-semibold text-light-text border border-gold/40 hover:border-gold-alt transition-all flex items-center justify-center gap-2 bg-white/80"
                 >
-                  Request Area Report
+                  <FileText className="w-4 h-4 text-gold-alt" />
+                  <span>Request Area Report</span>
                 </button>
               </div>
             </motion.div>
