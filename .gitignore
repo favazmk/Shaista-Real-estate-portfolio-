@@ -9,3 +9,5 @@ coverage/
 .vercel
 *.zip
 *.csv
+*.jxl
+*.mp4
