@@ -62,11 +62,11 @@ export default function App() {
   return (
     <div className="bg-primary text-text-white min-h-screen relative font-sans selection:bg-gold selection:text-primary">
       {/* Global Architectural Grid & Ambient Gold Spotlight Backdrops */}
-      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden max-w-full">
         <div className="absolute inset-0 bg-luxury-grid opacity-60" />
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gold/10 blur-[140px]" />
-        <div className="absolute top-[40%] right-[-10%] w-[600px] h-[600px] rounded-full bg-gold/05 blur-[160px]" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[700px] h-[700px] rounded-full bg-gold/08 blur-[180px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] rounded-full bg-gold/10 blur-[140px]" />
+        <div className="absolute top-[40%] right-[-10%] w-[320px] sm:w-[600px] h-[320px] sm:h-[600px] rounded-full bg-gold/05 blur-[160px]" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[340px] sm:w-[700px] h-[340px] sm:h-[700px] rounded-full bg-gold/08 blur-[180px]" />
       </div>
 
       {/* Custom Luxury Dual-Ring Cursor */}

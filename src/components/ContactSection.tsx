@@ -51,7 +51,7 @@ export const ContactSection: React.FC = () => {
 
       {/* Moving Particles Canvas */}
       <ParticleCanvas variant="dark" particleCount={35} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold/10 rounded-full blur-[220px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[700px] h-[280px] sm:h-[700px] bg-gold/10 rounded-full blur-[220px] pointer-events-none max-w-full" />
 
       <motion.div 
         variants={staggerContainer}

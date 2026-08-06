@@ -30,7 +30,7 @@ export const PillarsSection: React.FC = () => {
       {/* Background Ambient Glow */}
       <div className="absolute inset-0 bg-editorial-light-grid opacity-50 pointer-events-none" />
       <ParticleCanvas variant="light" particleCount={25} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[600px] h-[280px] sm:h-[600px] bg-gold/10 rounded-full blur-[160px] pointer-events-none max-w-full" />
 
       <motion.div 
         variants={staggerContainer}

@@ -28,8 +28,8 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onSelectProj
     <section id="properties" className="py-28 bg-gradient-to-b from-primary via-[#12110E] to-primary relative overflow-hidden border-t border-b border-white/5">
       {/* Background Architectural Grid & Lighting */}
       <div className="absolute inset-0 bg-luxury-grid opacity-30 pointer-events-none" />
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-10 left-[-10%] w-[500px] h-[500px] bg-gold/08 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/10 rounded-full blur-[180px] pointer-events-none max-w-full" />
+      <div className="absolute bottom-10 left-[-10%] w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/08 rounded-full blur-[160px] pointer-events-none max-w-full" />
 
       <motion.div 
         variants={staggerContainer}

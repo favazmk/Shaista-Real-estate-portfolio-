@@ -34,8 +34,8 @@ export const InvestmentCalculator: React.FC = () => {
     <section id="calculator" className="py-28 bg-gradient-to-b from-[#0F0E0C] via-[#161410] to-[#0D0C0A] relative overflow-hidden border-t border-b border-white/10">
       {/* Background Lighting & Luxury Gold Grid */}
       <div className="absolute inset-0 bg-luxury-gold-grid opacity-30 pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 w-[600px] h-[600px] bg-gold/10 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-gold/08 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 right-1/4 w-[280px] sm:w-[600px] h-[280px] sm:h-[600px] bg-gold/10 rounded-full blur-[180px] pointer-events-none max-w-full" />
+      <div className="absolute bottom-10 left-10 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/08 rounded-full blur-[160px] pointer-events-none max-w-full" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         

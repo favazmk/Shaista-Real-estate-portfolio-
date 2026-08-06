@@ -19,8 +19,8 @@ export const Testimonials: React.FC = () => {
       <ParticleCanvas variant="dark" particleCount={30} />
       
       {/* Ambient glows */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] ambient-glow-gold rounded-full opacity-60 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] ambient-glow-subtle rounded-full opacity-40 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[280px] sm:w-[800px] h-[280px] sm:h-[800px] ambient-glow-gold rounded-full opacity-60 pointer-events-none max-w-full" />
+      <div className="absolute bottom-0 left-0 w-[280px] sm:w-[600px] h-[280px] sm:h-[600px] ambient-glow-subtle rounded-full opacity-40 pointer-events-none max-w-full" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
         

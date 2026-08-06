@@ -44,8 +44,8 @@ export const Services: React.FC<ServicesProps> = ({ onBookClick }) => {
     <section id="services" className="py-28 bg-gradient-to-b from-primary via-[#14120D] to-primary relative overflow-hidden border-t border-b border-white/10">
       {/* Background Radial Glow & Grid */}
       <div className="absolute inset-0 bg-luxury-grid opacity-30 pointer-events-none" />
-      <div className="absolute top-1/4 right-10 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[170px] pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-gold/08 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/4 right-10 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/10 rounded-full blur-[170px] pointer-events-none max-w-full" />
+      <div className="absolute bottom-10 left-10 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/08 rounded-full blur-[160px] pointer-events-none max-w-full" />
 
       <motion.div 
         variants={staggerContainer}

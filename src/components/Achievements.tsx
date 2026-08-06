@@ -13,7 +13,7 @@ export const Achievements: React.FC = () => {
 
       {/* Moving Particles Canvas */}
       <ParticleCanvas variant="dark" particleCount={35} />
-      <div className="absolute bottom-10 right-10 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[170px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/10 rounded-full blur-[170px] pointer-events-none max-w-full" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         

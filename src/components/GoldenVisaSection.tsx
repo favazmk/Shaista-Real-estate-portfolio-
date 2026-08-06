@@ -16,7 +16,7 @@ export const GoldenVisaSection: React.FC<GoldenVisaSectionProps> = ({ onBookClic
   return (
     <section id="golden-visa" className="py-28 bg-gradient-to-b from-primary via-[#15130E] to-primary relative overflow-hidden border-t border-b border-white/10">
       <div className="absolute inset-0 bg-editorial-gold-grid opacity-25 pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gold/10 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[280px] sm:w-[700px] h-[280px] sm:h-[700px] bg-gold/10 rounded-full blur-[200px] pointer-events-none max-w-full" />
 
       <motion.div 
         variants={staggerContainer}

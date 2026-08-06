@@ -204,8 +204,8 @@ export const SequenceHero: React.FC = () => {
       if (container) {
         const rect = container.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
-        // Scrub sequence animation across the first 400vh, leaving 100vh for full sequence reveal and 100vh for About stacking
-        const scrubDistance = viewportHeight * 4;
+        // Scrub sequence animation across 4.0vh so all 240 frames & scenes finish 100% before stacking begins
+        const scrubDistance = viewportHeight * 4.0;
         
         let progress = scrubDistance > 0 ? -rect.top / scrubDistance : 0;
         progress = Math.max(0, Math.min(1, progress));
@@ -230,10 +230,10 @@ export const SequenceHero: React.FC = () => {
         updateScenes(progress);
 
         // Keep bottom gradient blend minimal (opacity 0.1) during scenes 1-4.
-        // Ramp up smoothly to full opacity at the end of the sequence (progress > 0.75) for stacking.
+        // Ramp up smoothly to full opacity as sequence finishes (progress > 0.8) for stacking.
         if (bottomBlendRef.current) {
-          const blendOpacity = progress > 0.75 
-            ? 0.1 + 0.9 * Math.min(1, (progress - 0.75) / 0.2) 
+          const blendOpacity = progress > 0.8 
+            ? 0.1 + 0.9 * Math.min(1, (progress - 0.8) / 0.2) 
             : 0.1;
           bottomBlendRef.current.style.opacity = String(blendOpacity);
         }

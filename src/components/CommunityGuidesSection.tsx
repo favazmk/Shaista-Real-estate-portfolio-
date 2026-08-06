@@ -17,7 +17,7 @@ export const CommunityGuidesSection: React.FC<CommunityGuidesSectionProps> = ({ 
     <section id="community-guides" className="py-14 md:py-16 bg-[#F5F2EC] bg-architectural-lines-light text-light-text relative overflow-hidden border-t border-b border-gold/20">
       <div className="absolute inset-0 bg-editorial-light-grid opacity-60 pointer-events-none" />
       <ParticleCanvas variant="light" particleCount={40} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gold/12 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[280px] sm:w-[700px] h-[280px] sm:h-[700px] bg-gold/12 rounded-full blur-[200px] pointer-events-none max-w-full" />
 
       <motion.div 
         variants={staggerContainer}

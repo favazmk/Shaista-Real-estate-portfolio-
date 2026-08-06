@@ -27,8 +27,8 @@ export const BuyingProcessSection: React.FC<BuyingProcessSectionProps> = ({ onBo
 
       {/* Moving Particles Canvas */}
       <ParticleCanvas variant="dark" particleCount={35} />
-      <div className="absolute top-1/3 left-[-10%] w-[500px] h-[500px] bg-gold/08 rounded-full blur-[180px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-[-10%] w-[500px] h-[500px] bg-gold/08 rounded-full blur-[180px] pointer-events-none" />
+      <div className="absolute top-1/3 left-[-10%] w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/08 rounded-full blur-[180px] pointer-events-none max-w-full" />
+      <div className="absolute bottom-1/3 right-[-10%] w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/08 rounded-full blur-[180px] pointer-events-none max-w-full" />
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
         
         {/* Header */}

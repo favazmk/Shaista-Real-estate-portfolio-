@@ -42,7 +42,7 @@ export const InvestmentInsightsSection: React.FC<InvestmentInsightsSectionProps>
       {/* Moving Particles Canvas */}
       <ParticleCanvas variant="light" particleCount={40} />
 
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-gold/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 right-0 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/10 rounded-full blur-[160px] pointer-events-none max-w-full" />
 
       <motion.div 
         variants={staggerContainer}

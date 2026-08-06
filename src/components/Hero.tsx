@@ -119,7 +119,7 @@ export const Hero: React.FC<HeroProps> = ({ onBookClick, onExploreClick }) => {
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
             className="w-full h-full relative"
           >
-            <div className="absolute left-[16px] sm:left-[20px] top-[16px] sm:top-[20px] w-full h-full border border-[#937332]/35 rounded-t-[180px] rounded-b-[2px] pointer-events-none" style={{ transform: "translateZ(-30px)" }} />
+            <div className="absolute inset-0 translate-x-3 sm:translate-x-4 translate-y-3 sm:translate-y-4 border border-[#937332]/35 rounded-t-[180px] rounded-b-[2px] pointer-events-none" style={{ transform: "translateZ(-30px)" }} />
             <div className="relative w-full h-full rounded-t-[180px] rounded-b-[2px] overflow-hidden bg-[#E7E1D5]" style={{ transform: "translateZ(0px)" }}>
               <img 
                 src="/images/DSC02696.webp" 

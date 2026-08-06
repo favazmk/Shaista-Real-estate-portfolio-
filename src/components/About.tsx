@@ -29,7 +29,7 @@ export const About: React.FC = () => {
       <div className="absolute inset-0 bg-editorial-light-grid opacity-60 pointer-events-none" />
       <ParticleCanvas variant="light" particleCount={35} />
 
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-gold/15 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[280px] sm:w-[500px] h-[280px] sm:h-[500px] bg-gold/15 rounded-full blur-[160px] pointer-events-none max-w-full" />
 
       <motion.div 
         variants={staggerContainer}
