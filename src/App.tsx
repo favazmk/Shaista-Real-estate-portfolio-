@@ -60,7 +60,7 @@ export default function App() {
   };
 
   return (
-    <div className="bg-primary text-text-white min-h-screen relative font-sans selection:bg-gold selection:text-primary">
+    <div className="bg-primary text-text-white min-h-screen relative font-sans selection:bg-gold selection:text-primary overflow-x-hidden w-full max-w-full">
       {/* Global Architectural Grid & Ambient Gold Spotlight Backdrops */}
       <div className="fixed inset-0 pointer-events-none z-0 bg-luxury-grid opacity-60" />
       <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-gold/10 blur-[140px] pointer-events-none z-0" />
