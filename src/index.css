@@ -52,6 +52,7 @@
   background: linear-gradient(135deg, #F7F5F2 0%, #C8A96A 50%, #E5C378 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  padding-right: 0.2em;
 }
 
 .gold-border-gradient {

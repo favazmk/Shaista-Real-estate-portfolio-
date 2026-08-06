@@ -67,7 +67,7 @@ export const ContactSection: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5" />
             <span>PRIMARY CONTACT & CONSULTATION</span>
           </div>
-          <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-text-white mb-4">
+          <h2 className="font-serif-luxury text-3xl sm:text-5xl lg:text-6xl font-normal text-text-white mb-4">
             Connect With <br />
             <span className="italic gold-text-gradient">Shaista Fathima</span>
           </h2>

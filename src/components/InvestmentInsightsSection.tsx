@@ -59,7 +59,7 @@ export const InvestmentInsightsSection: React.FC<InvestmentInsightsSectionProps>
               <TrendingUp className="w-3.5 h-3.5" />
               <span>MACROECONOMIC & NRI INVESTMENT ADVANTAGE</span>
             </div>
-            <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-light-text">
+            <h2 className="font-serif-luxury text-3xl sm:text-5xl lg:text-6xl font-normal text-light-text">
               Why Global & NRI Investors <br />
               <span className="italic text-gold-alt">Choose Dubai Real Estate</span>
             </h2>

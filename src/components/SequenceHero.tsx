@@ -42,6 +42,8 @@ export const SequenceHero: React.FC = () => {
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
   const progressIndicatorRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const bottomBlendRef = useRef<HTMLDivElement>(null);
   
   const lastRenderedFrame = useRef<number>(-1);
   const currentFrameFloat = useRef<number>(0);
@@ -49,7 +51,7 @@ export const SequenceHero: React.FC = () => {
   const imagesRef = useRef<HTMLImageElement[]>([]);
   const rafIdRef = useRef<number>(0);
 
-  // High performance top-aligned aspect-ratio cover renderer (cuts bottom if needed, preserves top sky/head)
+  // High performance center-aligned aspect-ratio cover renderer (crops top and bottom evenly)
   const drawImageCover = useCallback((ctx: CanvasRenderingContext2D, img: HTMLImageElement, canvasWidth: number, canvasHeight: number) => {
     const imgRatio = img.naturalWidth / img.naturalHeight;
     const canvasRatio = canvasWidth / canvasHeight;
@@ -60,10 +62,10 @@ export const SequenceHero: React.FC = () => {
 
     if (canvasRatio > imgRatio) {
       renderH = canvasWidth / imgRatio;
-      offsetY = 0; // Cut bottom, preserve top
+      offsetY = (canvasHeight - renderH) / 2; // Centered vertically (equal top & bottom crop)
     } else {
       renderW = canvasHeight * imgRatio;
-      offsetX = (canvasWidth - renderW) / 2;
+      offsetX = (canvasWidth - renderW) / 2; // Centered horizontally (equal left & right crop)
     }
 
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
@@ -202,7 +204,8 @@ export const SequenceHero: React.FC = () => {
       if (container) {
         const rect = container.getBoundingClientRect();
         const viewportHeight = window.innerHeight;
-        const scrubDistance = rect.height - viewportHeight;
+        // Scrub sequence animation across the first 400vh, leaving 100vh for full sequence reveal and 100vh for About stacking
+        const scrubDistance = viewportHeight * 4;
         
         let progress = scrubDistance > 0 ? -rect.top / scrubDistance : 0;
         progress = Math.max(0, Math.min(1, progress));
@@ -225,6 +228,15 @@ export const SequenceHero: React.FC = () => {
         }
 
         updateScenes(progress);
+
+        // Keep bottom gradient blend minimal (opacity 0.1) during scenes 1-4.
+        // Ramp up smoothly to full opacity at the end of the sequence (progress > 0.75) for stacking.
+        if (bottomBlendRef.current) {
+          const blendOpacity = progress > 0.75 
+            ? 0.1 + 0.9 * Math.min(1, (progress - 0.75) / 0.2) 
+            : 0.1;
+          bottomBlendRef.current.style.opacity = String(blendOpacity);
+        }
       }
 
       rafIdRef.current = requestAnimationFrame(loop);
@@ -238,8 +250,8 @@ export const SequenceHero: React.FC = () => {
   }, [renderFrame]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[500vh] bg-black z-10">
-      <div className="sticky top-0 w-full h-screen overflow-hidden">
+    <section ref={containerRef} className="relative w-full h-[600vh] bg-black z-0">
+      <div ref={stickyRef} className="sticky top-0 w-full h-screen overflow-hidden z-0">
         
         {/* Cinematic Canvas Sequence */}
         <canvas
@@ -253,58 +265,28 @@ export const SequenceHero: React.FC = () => {
         {/* Top Vignette Gradient for Navbar Legibility */}
         <div className="absolute top-0 inset-x-0 h-36 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-15 pointer-events-none" />
 
-        {/* Bottom Light Fade Gradient matching top vignette */}
-        <div className="absolute bottom-0 inset-x-0 h-16 bg-gradient-to-t from-[#F4F1EA]/60 to-transparent z-15 pointer-events-none" />
+        {/* Bottom Light Fade Gradient matching the next section (#FAF8F5) — minimal during sequence, expands at end */}
+        <div 
+          ref={bottomBlendRef}
+          className="absolute bottom-0 inset-x-0 h-28 sm:h-40 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/80 to-transparent z-15 pointer-events-none transition-opacity duration-150" 
+        />
 
-        {/* Hero Scenes Overlay — Mobile-Optimized Positioning & Fluid Typography */}
+        {/* Hero Scenes Overlay — Mobile-Optimized Positioning (Below Navbar at top-[115px]) & Unchanged Desktop Layout */}
         <div className="absolute inset-0 z-20 pointer-events-none">
           {scenes.map((scene, i) => {
             const isLeft = scene.align === 'left';
             const isRight = scene.align === 'right';
-            const isCenter = scene.align === 'center';
 
-            if (isCenter) {
-              return (
-                <div 
-                  key={i} 
-                  className="absolute inset-x-0 top-[15%] sm:top-[20%] md:top-[22%] flex justify-center text-center px-4 pointer-events-none"
-                >
-                  <div
-                    ref={el => textRefs.current[i] = el}
-                    className="w-auto max-w-[850px]"
-                    style={{ 
-                      opacity: 0,
-                      transform: 'translateY(30px)',
-                      filter: 'blur(10px)',
-                      willChange: 'opacity, transform, filter'
-                    }}
-                  >
-                    <p className="uppercase tracking-[0.2em] text-[11px] sm:text-[14px] md:text-[18px] font-semibold mb-1.5 md:mb-3 text-white/75">
-                      {scene.label}
-                    </p>
-                    <h1 
-                      className="text-[1.5rem] sm:text-[2.5rem] md:text-[3.75rem] lg:text-[62px] font-serif-luxury font-bold leading-[1.12] md:leading-[1.08] text-white"
-                      style={{ textShadow: '0 6px 28px rgba(0,0,0,0.65)' }}
-                    >
-                      {scene.heading.split('\n').map((line, index) => (
-                        <React.Fragment key={index}>
-                          {line}<br />
-                        </React.Fragment>
-                      ))}
-                    </h1>
-                  </div>
-                </div>
-              );
-            }
-            
             return (
               <div 
                 key={i} 
                 ref={el => textRefs.current[i] = el}
-                className={`absolute ${
+                className={`absolute inset-x-0 sm:inset-x-auto top-[115px] sm:top-[14%] md:top-[18%] px-5 sm:px-0 text-center ${
                   isLeft 
-                    ? 'left-[4%] sm:left-[8%] md:left-[10%] text-left max-w-[85vw] sm:max-w-[500px] top-[15%] sm:top-[20%] md:top-1/2 md:-translate-y-1/2' 
-                    : 'right-[4%] sm:right-[8%] md:right-[10%] text-right max-w-[85vw] sm:max-w-[500px] top-[15%] sm:top-[20%] md:top-1/2 md:-translate-y-1/2'
+                    ? 'sm:left-[8%] md:left-[10%] sm:text-left max-w-full sm:max-w-[520px]' 
+                    : isRight
+                      ? 'sm:right-[8%] md:right-[10%] sm:text-right max-w-full sm:max-w-[520px]'
+                      : 'sm:left-1/2 sm:-translate-x-1/2 sm:text-center max-w-full sm:max-w-[850px]'
                 }`}
                 style={{ 
                   opacity: 0,
@@ -313,12 +295,12 @@ export const SequenceHero: React.FC = () => {
                   willChange: 'opacity, transform, filter'
                 }}
               >
-                <p className="uppercase tracking-[0.2em] text-[11px] sm:text-[14px] md:text-[18px] font-semibold mb-1.5 md:mb-3 text-white/75">
+                <p className="uppercase tracking-[0.22em] text-[10px] sm:text-[14px] md:text-[18px] font-semibold mb-2 sm:mb-3 text-white/85 drop-shadow-md">
                   {scene.label}
                 </p>
                 <h1 
-                  className="text-[1.35rem] sm:text-[2.25rem] md:text-[3.5rem] lg:text-[60px] font-serif-luxury font-bold leading-[1.15] md:leading-[1.08] text-white"
-                  style={{ textShadow: '0 6px 28px rgba(0,0,0,0.65)' }}
+                  className="text-[1.65rem] sm:text-[2.25rem] md:text-[3.5rem] lg:text-[60px] font-serif-luxury font-bold leading-[1.2] sm:leading-[1.12] md:leading-[1.08] text-white"
+                  style={{ textShadow: '0 6px 28px rgba(0,0,0,0.85)' }}
                 >
                   {scene.heading.split('\n').map((line, index) => (
                     <React.Fragment key={index}>

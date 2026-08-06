@@ -27,10 +27,13 @@ const cardReveal = {
   }
 };
 
-// ----------------------------------------------------------------------
-// Cinematic Reel Card Component
-// ----------------------------------------------------------------------
-const CinematicReelCard = ({ reel, isDimmed, onClick }) => {
+interface CinematicReelCardProps {
+  reel: any;
+  isDimmed?: boolean;
+  onClick: (reel: any) => void;
+}
+
+const CinematicReelCard: React.FC<CinematicReelCardProps> = ({ reel, isDimmed, onClick }) => {
   return (
     <motion.div
       variants={cardReveal}

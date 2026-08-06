@@ -46,7 +46,7 @@ export const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ onSelectProj
               <Sparkles className="w-3.5 h-3.5" />
               <span>THE PORTFOLIO OF DISTINCTION</span>
             </div>
-            <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-text-white">
+            <h2 className="font-serif-luxury text-3xl sm:text-5xl lg:text-6xl font-normal text-text-white">
               Featured Luxury <br />
               <span className="italic gold-text-gradient">Real Estate Collections</span>
             </h2>

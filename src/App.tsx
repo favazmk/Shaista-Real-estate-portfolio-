@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Preloader } from './components/Preloader';
 import { CustomCursor } from './components/CustomCursor';
 import { Navbar } from './components/Navbar';
@@ -16,20 +16,34 @@ import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { FloatingBar } from './components/FloatingBar';
+import { PillarsSection } from './components/PillarsSection';
 
 export default function App() {
   const [loading, setLoading] = useState(true);
-  const [isHeroActive, setIsHeroActive] = useState(true);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+  const sequenceHeroRef = useRef<HTMLDivElement>(null);
 
+  // Robust IntersectionObserver: observe the SequenceHero wrapper directly.
+  // Navbar is HIDDEN whenever any part of SequenceHero is visible on screen.
+  // Navbar is SHOWN only when SequenceHero is completely off-screen.
   useEffect(() => {
-    const handleScroll = () => {
-      // SequenceHero is 500vh tall. We consider it active until we scroll past ~450vh
-      setIsHeroActive(window.scrollY < window.innerHeight * 4.5);
-    };
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // init
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    if (loading) return;
+
+    const target = sequenceHeroRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // isIntersecting = true means at least 1px of SequenceHero is visible
+        // Navbar visible only when SequenceHero is NOT visible at all
+        setIsNavbarVisible(!entry.isIntersecting);
+      },
+      { threshold: 0 } // fires at 0% visibility boundary
+    );
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [loading]);
 
   const scrollToContact = () => {
     const el = document.getElementById('contact');
@@ -62,13 +76,16 @@ export default function App() {
       {!loading && (
         <>
           {/* Top Navbar */}
-          <Navbar onBookClick={scrollToContact} isHeroActive={isHeroActive} />
+          <Navbar onBookClick={scrollToContact} isVisible={isNavbarVisible} />
 
           {/* Main Sections */}
           <main>
-            <SequenceHero />
-            <Hero onBookClick={scrollToContact} onExploreClick={scrollToExplore} />
+            <div ref={sequenceHeroRef}>
+              <SequenceHero />
+            </div>
             <About />
+            <Hero onBookClick={scrollToContact} onExploreClick={scrollToExplore} />
+            <PillarsSection />
             <DeveloperPartnersSection onBookClick={scrollToContact} />
             <CommunityGuidesSection onBookClick={scrollToContact} />
             <InvestmentInsightsSection onBookClick={scrollToContact} />

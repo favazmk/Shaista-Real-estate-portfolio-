@@ -33,7 +33,7 @@ export const CommunityGuidesSection: React.FC<CommunityGuidesSectionProps> = ({ 
             <MapPin className="w-3.5 h-3.5" />
             <span>PRIME DUBAI NEIGHBORHOOD INSIGHTS</span>
           </div>
-          <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-light-text mb-4">
+          <h2 className="font-serif-luxury text-3xl sm:text-5xl lg:text-6xl font-normal text-light-text mb-4">
             Yield & Area Guides
           </h2>
           <p className="text-light-text-muted text-sm font-light leading-relaxed">

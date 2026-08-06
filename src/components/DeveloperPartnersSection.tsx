@@ -31,7 +31,7 @@ export const DeveloperPartnersSection: React.FC<DeveloperPartnersSectionProps> =
               <Building2 className="w-3.5 h-3.5" />
               <span>OFF-PLAN PARTNERSHIPS</span>
             </div>
-            <h2 className="font-serif-luxury text-4xl sm:text-5xl lg:text-6xl font-normal text-text-white">
+            <h2 className="font-serif-luxury text-3xl sm:text-5xl lg:text-6xl font-normal text-text-white">
               Master Developer <br />
               <span className="italic gold-text-gradient">Partners in Dubai</span>
             </h2>
