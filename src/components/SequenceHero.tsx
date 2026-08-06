@@ -250,7 +250,7 @@ export const SequenceHero: React.FC = () => {
   }, [renderFrame]);
 
   return (
-    <section ref={containerRef} className="relative w-full h-[600vh] bg-black z-0 overflow-hidden">
+    <section ref={containerRef} className="relative w-full h-[600vh] bg-black z-0">
       <div ref={stickyRef} className="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden z-0">
         
         {/* Cinematic Canvas Sequence */}
