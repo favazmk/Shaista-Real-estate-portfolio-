@@ -272,6 +272,7 @@ export const MediaGallerySection: React.FC = () => {
                   controls
                   autoPlay
                   playsInline
+                  preload="metadata"
                   className="w-full max-h-[80vh] object-contain rounded-2xl"
                 />
               ) : (
