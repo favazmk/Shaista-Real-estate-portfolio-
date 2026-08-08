@@ -91,11 +91,11 @@ export const CommunityGuidesSection: React.FC<CommunityGuidesSectionProps> = ({ 
                 className="w-full h-full object-cover filter brightness-95"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-light-text/60 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between text-xs font-mono">
-                <span className="px-3 py-1.5 rounded-full bg-white/90 text-gold-alt border border-gold/40 font-bold shadow-sm">
+              <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono">
+                <span className="px-3 py-1.5 rounded-full bg-white/95 text-gold-alt border border-gold/40 font-bold shadow-sm text-[10px] sm:text-xs whitespace-nowrap">
                   Avg Yield: {activeGuide.avgYield}
                 </span>
-                <span className="px-3 py-1.5 rounded-full bg-light-text/80 text-[#FAF8F5] border border-white/20">
+                <span className="px-3 py-1.5 rounded-full bg-light-text/90 text-[#FAF8F5] border border-white/20 text-[10px] sm:text-xs whitespace-nowrap">
                   Starting: {activeGuide.startingPrice}
                 </span>
               </div>

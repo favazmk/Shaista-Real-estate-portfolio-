@@ -88,7 +88,7 @@ export const InvestmentInsightsSection: React.FC<InvestmentInsightsSectionProps>
                     </span>
                   </div>
 
-                  <span className="font-serif-luxury text-xl font-bold text-gold-alt px-3 py-1 rounded-full bg-white border border-gold/40 shadow-sm">
+                  <span className="font-serif-luxury text-sm sm:text-base font-bold text-gold-alt px-3 py-1.5 rounded-full bg-white border border-gold/40 shadow-sm whitespace-nowrap shrink-0">
                     {insight.stat}
                   </span>
                 </div>

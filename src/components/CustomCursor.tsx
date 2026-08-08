@@ -42,7 +42,7 @@ export const CustomCursor: React.FC = () => {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden hidden md:block">
+    <div className="pointer-events-none fixed inset-0 z-[2147483647] overflow-hidden hidden md:block">
       {/* Outer Spring Ring */}
       <motion.div
         className="fixed top-0 left-0 rounded-full border border-gold/70 flex items-center justify-center pointer-events-none"

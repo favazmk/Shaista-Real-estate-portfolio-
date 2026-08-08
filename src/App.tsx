@@ -6,12 +6,12 @@ import { Hero } from './components/Hero';
 import { SequenceHero } from './components/SequenceHero';
 import { About } from './components/About';
 import { DeveloperPartnersSection } from './components/DeveloperPartnersSection';
+import { MediaGallerySection } from './components/MediaGallerySection';
 import { CommunityGuidesSection } from './components/CommunityGuidesSection';
 import { InvestmentInsightsSection } from './components/InvestmentInsightsSection';
 import { PersonalBrand } from './components/PersonalBrand';
 import { Testimonials } from './components/Testimonials';
 import { Achievements } from './components/Achievements';
-import { VideoSection } from './components/VideoSection';
 import { FAQ } from './components/FAQ';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
@@ -94,7 +94,7 @@ export default function App() {
             <PersonalBrand />
             <Testimonials />
             <Achievements />
-            <VideoSection />
+            <MediaGallerySection />
             <FAQ />
             <ContactSection />
           </main>
