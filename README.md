@@ -1,37 +1,66 @@
-# Shaista Real Estate Portfolio
+# Shaista Fathima — Luxury Real Estate Portfolio
 
-**Live Link**: [https://shaista-portfolio-gold.vercel.app](https://shaista-portfolio-gold.vercel.app)
+A 100% static website. Plain HTML, one compiled CSS file, and one vanilla
+JavaScript file. No build step, no Node.js, no framework.
 
-## Screenshot
-<!-- Screenshot will be added here -->
+## Deploying to Hostinger (or any shared host)
 
-## Project Description
-A premium real estate portfolio for Shaista showcasing properties, developer partners, investment insights, and a seamless buying process. Designed to provide a high-end experience for prospective clients and investors.
+Upload the **entire contents** of this folder into `public_html/`. That's it —
+there is nothing to build, install, or configure.
 
-## Tech Stack
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
-- GSAP / Framer Motion (Animations)
+```
+public_html/
+├── index.html
+├── favicon.svg
+├── assets/
+│   ├── css/style.css
+│   └── js/main.js
+├── images/
+├── logos/
+└── latest-hero-sequences/
+```
 
-## Features
-- **Premium Property Showcase**: View featured properties with high-quality images and details.
-- **Investment Calculator**: Calculate potential returns on real estate investments.
-- **Golden Visa Information**: Comprehensive guides on securing a Golden Visa.
-- **Interactive Animations**: Smooth scroll and custom cursor for an elevated user experience.
+Set the hosting type to **static / HTML**, not Node.js.
 
-## Local Setup / Run Instructions
+## Opening it locally
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-2. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-3. **Build for production:**
-   ```bash
-   npm run build
-   ```
+Double-click `index.html`. It runs correctly straight from the `file:///`
+protocol — every path is relative, the script is a classic `<script defer>`
+rather than an ES module, and no local asset is loaded through `fetch()`.
+
+Two things need an internet connection (they are remote by design, exactly as
+before): the Google Fonts stylesheet, the embedded Google Map, and the Unsplash
+photography used for the developer-partner and community cards.
+
+## Structure
+
+| Path | Contents |
+| --- | --- |
+| `index.html` | Every section of the page, in order. Icons are inlined SVG. |
+| `assets/css/style.css` | Compiled Tailwind utilities plus all custom styling. |
+| `assets/js/main.js` | All behaviour, wrapped in an IIFE. |
+| `images/` | Portraits, gallery photos, reel thumbnails, award video. |
+| `logos/` | Developer marquee logos. |
+| `latest-hero-sequences/` | The 260 frames of the scroll-scrubbed hero. |
+
+## Editing
+
+**Content and layout** — edit `index.html` directly.
+
+**Behaviour** — edit `assets/js/main.js`. It is organised into numbered
+sections (scroll reveals, particle canvas, custom cursor, preloader, navbar,
+sequence hero, hero tilt, community guides, modals, testimonials, lightbox,
+FAQ, contact form, floating bar).
+
+**Styling** — `assets/css/style.css` is a compiled artifact. For small changes,
+append plain CSS to the end of the file; it is ordinary CSS and needs no
+tooling. Note that the Tailwind utility classes already in the markup are baked
+into this file, so **adding a new Tailwind class name to the HTML will not do
+anything** unless you also write the corresponding CSS yourself.
+
+### One thing not to change
+
+`assets/js/main.js` sets `document.body.style.overflow = 'unset'` on startup.
+This is load-bearing: the stylesheet sets `overflow-x: hidden` on `body`, which
+would otherwise make `body` a scroll container and silently break the
+`position: sticky` pin that the 600vh hero sequence depends on.
