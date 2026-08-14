@@ -871,12 +871,12 @@
      13. MEDIA GALLERY — lightbox  (MediaGallerySection.tsx)
      ====================================================================== */
   var ALL_MEDIA = [
-    { type: 'image', src: './images/IMG_6875.JPG', title: 'Luxury Property Showcase', category: 'Client Advisory' },
+    { type: 'image', src: './images/IMG_6875.JPG', title: 'Gift from Happy Client', category: 'Client Advisory' },
     { type: 'image', src: './images/IMG_6876.JPG', title: 'Dubai Real Estate Excellence', category: 'Event Highlight' },
     { type: 'video', src: './images/IMG_6879.MP4', title: 'Shaista Fathima — Real Estate Excellence Award', category: 'Award Recognition' },
-    { type: 'image', src: './images/IMG_6877.JPG', title: 'Private Investor Meetup', category: 'Exclusive Briefing' },
-    { type: 'image', src: './images/IMG_6878.JPG', title: 'Gro Vision Leadership', category: 'Brand Presence' },
-    { type: 'image', src: './images/IMG_6880.JPG', title: 'VIP Client Consultations', category: 'Dubai Living' }
+    { type: 'image', src: './images/IMG_6877.JPG', title: 'CEO, Para John', category: 'Exclusive Briefing' },
+    { type: 'image', src: './images/IMG_6878.JPG', title: 'CEO, Nesto Group', category: 'Brand Presence' },
+    { type: 'image', src: './images/IMG_6880.JPG', title: 'Saudi Royal Family', category: 'Dubai Living' }
   ];
 
   function initLightbox() {
