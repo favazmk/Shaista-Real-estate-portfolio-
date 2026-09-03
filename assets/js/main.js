@@ -740,70 +740,15 @@
   }
 
   /* ======================================================================
-     11. PERSONAL BRAND — reel modal  (PersonalBrand.tsx)
+     11. PERSONAL BRAND — reels  (PersonalBrand.tsx)
      ====================================================================== */
-  function initReelModal() {
-    var modal = $('#reel-modal');
-    var box = $('#reel-modal-box');
-    var bg = $('#reel-modal-bg');
-    var iframe = $('#reel-modal-iframe');
-    var loader = $('#reel-modal-loader');
-    var directLink = $('#reel-modal-direct');
-    var close = $('#reel-modal-close');
-    if (!modal) return;
-
+  function initReels() {
     // The React build's modal effect ran its "no modal open" branch on mount,
     // which left an inline `overflow: unset` on <body>. That inline value is
     // what cancels the `overflow-x: hidden` base rule — and body must NOT be a
     // scroll container, otherwise the 600vh SequenceHero's `position: sticky`
     // pin silently stops working. Keep it set here for the same reason.
     document.body.style.overflow = 'unset';
-
-    function open(thumb, reelId) {
-      if (bg) bg.style.backgroundImage = 'url(' + thumb + ')';
-      if (loader) loader.style.opacity = '1';
-
-      var id = reelId || 'Da8Au_OsFMv';
-      if (directLink) directLink.href = 'https://www.instagram.com/reel/' + id + '/';
-      if (iframe) {
-        iframe.src = 'https://www.instagram.com/reel/' + id + '/embed/';
-        iframe.onload = function () {
-          if (loader) loader.style.opacity = '0';
-        };
-      }
-
-      modal.style.display = '';
-      box.style.transform = 'scale(0.95) translateY(20px)';
-      void modal.offsetWidth;
-      modal.style.opacity = '1';
-      box.style.transform = 'scale(1) translateY(0)';
-      document.body.style.overflow = 'hidden';
-    }
-
-    function hide() {
-      modal.style.opacity = '0';
-      box.style.transform = 'scale(0.95) translateY(20px)';
-      document.body.style.overflow = 'unset';
-      window.setTimeout(function () {
-        modal.style.display = 'none';
-        if (iframe) iframe.removeAttribute('src');
-      }, 400);
-    }
-
-    $$('[data-reel]').forEach(function (card) {
-      card.addEventListener('click', function () {
-        var thumb = card.getAttribute('data-reel');
-        var reelId = card.getAttribute('data-reel-id');
-        open(thumb, reelId);
-      });
-    });
-
-    close.addEventListener('click', function (e) { e.stopPropagation(); hide(); });
-    modal.addEventListener('click', hide);
-    box.addEventListener('click', function (e) { e.stopPropagation(); });
-    window.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && modal.style.display !== 'none') hide();
-    });
   }
 
   /* ======================================================================
@@ -1136,7 +1081,7 @@
       initAboutParallax();
       initHero();
       initCommunityGuides();
-      initReelModal();
+      initReels();
       initTestimonials();
       initLightbox();
       initFAQ();
