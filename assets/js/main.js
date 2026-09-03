@@ -742,13 +742,13 @@
   /* ======================================================================
      11. PERSONAL BRAND — reel modal  (PersonalBrand.tsx)
      ====================================================================== */
-  var FALLBACK_REEL_VIDEO = 'https://cdn.coverr.co/videos/coverr-a-beautiful-aerial-view-of-dubai-4422/1080p.mp4';
-
   function initReelModal() {
     var modal = $('#reel-modal');
     var box = $('#reel-modal-box');
     var bg = $('#reel-modal-bg');
-    var video = $('#reel-modal-video');
+    var iframe = $('#reel-modal-iframe');
+    var loader = $('#reel-modal-loader');
+    var directLink = $('#reel-modal-direct');
     var close = $('#reel-modal-close');
     if (!modal) return;
 
@@ -759,9 +759,19 @@
     // pin silently stops working. Keep it set here for the same reason.
     document.body.style.overflow = 'unset';
 
-    function open(thumb) {
-      bg.style.backgroundImage = 'url(' + thumb + ')';
-      video.src = FALLBACK_REEL_VIDEO;
+    function open(thumb, reelId) {
+      if (bg) bg.style.backgroundImage = 'url(' + thumb + ')';
+      if (loader) loader.style.opacity = '1';
+
+      var id = reelId || 'Da8Au_OsFMv';
+      if (directLink) directLink.href = 'https://www.instagram.com/reel/' + id + '/';
+      if (iframe) {
+        iframe.src = 'https://www.instagram.com/reel/' + id + '/embed/';
+        iframe.onload = function () {
+          if (loader) loader.style.opacity = '0';
+        };
+      }
+
       modal.style.display = '';
       box.style.transform = 'scale(0.95) translateY(20px)';
       void modal.offsetWidth;
@@ -776,14 +786,16 @@
       document.body.style.overflow = 'unset';
       window.setTimeout(function () {
         modal.style.display = 'none';
-        video.pause();
-        video.removeAttribute('src');
-        video.load();
-      }, 500);
+        if (iframe) iframe.removeAttribute('src');
+      }, 400);
     }
 
     $$('[data-reel]').forEach(function (card) {
-      card.addEventListener('click', function () { open(card.getAttribute('data-reel')); });
+      card.addEventListener('click', function () {
+        var thumb = card.getAttribute('data-reel');
+        var reelId = card.getAttribute('data-reel-id');
+        open(thumb, reelId);
+      });
     });
 
     close.addEventListener('click', function (e) { e.stopPropagation(); hide(); });
