@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
-  <body class="antialiased selection:bg-gold selection:text-primary overflow-x-hidden font-sans">
+  <body class="antialiased selection:bg-gold selection:text-primary overflow-x-clip font-sans">
     <div id="app" class="bg-primary text-text-white min-h-screen relative font-sans selection:bg-gold selection:text-primary">
 
       <!-- Global Architectural Grid & Ambient Gold Spotlight Backdrops -->
@@ -145,7 +145,7 @@
           <!-- ============ SEQUENCE HERO ============ -->
           <div id="sequence-hero-wrapper">
             <section id="sequence-hero" class="relative w-full h-[600vh] bg-black z-0">
-              <div class="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden z-0">
+              <div id="sequence-hero-sticky" class="sticky top-0 w-full h-screen h-[100dvh] overflow-hidden z-0">
 
                 <!-- Cinematic Canvas Sequence -->
                 <canvas id="sequence-canvas" class="absolute inset-0 w-full h-full"></canvas>

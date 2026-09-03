@@ -743,12 +743,7 @@
      11. PERSONAL BRAND — reels  (PersonalBrand.tsx)
      ====================================================================== */
   function initReels() {
-    // The React build's modal effect ran its "no modal open" branch on mount,
-    // which left an inline `overflow: unset` on <body>. That inline value is
-    // what cancels the `overflow-x: hidden` base rule — and body must NOT be a
-    // scroll container, otherwise the 600vh SequenceHero's `position: sticky`
-    // pin silently stops working. Keep it set here for the same reason.
-    document.body.style.overflow = 'unset';
+    // Direct external links handled natively in HTML
   }
 
   /* ======================================================================
@@ -1064,6 +1059,13 @@
      BOOTSTRAP
      ====================================================================== */
   function boot() {
+    // Viewport sticky safeguards: ensure html & body never create an unwanted
+    // scroll container that breaks position: sticky on SequenceHero
+    document.documentElement.style.overflowX = 'clip';
+    document.documentElement.style.overflowY = 'visible';
+    document.body.style.overflowX = 'clip';
+    document.body.style.overflowY = 'visible';
+
     var year = $('#footer-year');
     if (year) year.textContent = String(new Date().getFullYear());
 
